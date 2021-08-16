@@ -1,5 +1,8 @@
 <h1 align="center">knex-tree 👋</h1>
 <p>
+  <a href="https://github.com/a179346/knex-tree/actions/workflows/build.yml" target="_blank">
+    <img alt="Documentation" src="https://github.com/a179346/knex-tree/actions/workflows/build.yml/badge.svg" />
+  </a>
   <a href="https://www.npmjs.com/package/knex-tree" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/npm/v/knex-tree?maxAge=3600)" />
   </a>
