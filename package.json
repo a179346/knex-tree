@@ -1,0 +1,30 @@
+{
+  "name": "knex-tree",
+  "version": "0.0.1",
+  "description": "Search hierarchical data structures in sql with knex",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a179346/knex-tree.git"
+  },
+  "author": "a179346",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/a179346/knex-tree/issues"
+  },
+  "homepage": "https://github.com/a179346/knex-tree#readme",
+  "devDependencies": {
+    "@types/node": "^16.6.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
+    "knex": "^0.21.21",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  }
+}
