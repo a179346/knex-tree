@@ -1,7 +1,7 @@
 {
   "name": "knex-tree",
   "version": "0.3.0",
-  "description": "Search hierarchical data structures in sql with knex",
+  "description": "Query hierarchical data structures in sql with knex",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",

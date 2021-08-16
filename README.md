@@ -17,7 +17,7 @@
   </a>
 </p>
 
-> Search hierarchical data structures in sql with knex
+> Query hierarchical data structures in sql with knex
 
 ## 🔗 Link
 + [Github](https://github.com/a179346/knex-tree#readme)
