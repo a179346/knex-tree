@@ -1,6 +1,6 @@
 {
   "name": "knex-tree",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Search hierarchical data structures in sql with knex",
   "main": "dist/index.js",
   "scripts": {
