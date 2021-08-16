@@ -15,7 +15,7 @@ export interface INode<IdType, Model> {
   hasChild(id: IdType): Promise<Model | null>;
   hasParent(id: IdType): Promise<Model | null>;
   hasAncestor (id: IdType, maxLevel?: number): Promise<(Model & ITreeLv) | null>;
-  hasOffspring (id: IdType, maxLevel?: number): Promise<(Model & ITreeLv) | null>;
+  hasDescendant (id: IdType, maxLevel?: number): Promise<(Model & ITreeLv) | null>;
 
   getPathUpTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
   getPathDownTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;

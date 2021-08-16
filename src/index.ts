@@ -133,7 +133,7 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
     return result[result.length - 1];
   }
 
-  async hasOffspring (id: IdType, maxLevel?: number): Promise<(Model & ITreeLv) | null> {
+  async hasDescendant (id: IdType, maxLevel?: number): Promise<(Model & ITreeLv) | null> {
     if (id === this.id) return null;
     const node = this.makeNode(id);
     const result = await node.getPathUpTo(this.id, maxLevel);
