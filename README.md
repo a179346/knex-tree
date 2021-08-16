@@ -125,6 +125,15 @@ const data = await node.getPathUpTo(7);
 // return the path from this node to the descendant(id = 7)
 const data = await node.getPathDownTo(7);
 ```
+##### `KnexNode.getDescendants(maxLevel?)` => `Promise<(Model & ITreeLv)[] | null>`
+```js
+// data is null if this.id doesn't exist
+// return all descendants
+let data = await node.getDescendants();
+
+// return all descendants whose TreeLv <= 2
+data = await node.getDescendants(2);
+```
 
 ## 🙋‍♂️ Author
 

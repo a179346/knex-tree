@@ -19,6 +19,8 @@ export interface INode<IdType, Model> {
 
   getPathUpTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
   getPathDownTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
+
+  getDescendants(maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
 }
 
 export interface ITree<IdType, Model> {
