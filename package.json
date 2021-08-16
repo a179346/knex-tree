@@ -4,7 +4,8 @@
   "description": "Search hierarchical data structures in sql with knex",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -12,6 +13,20 @@
   },
   "author": "a179346",
   "license": "MIT",
+  "keywords": [
+    "tree",
+    "tree-structure",
+    "hierarchical",
+    "hierarchical-data",
+    "sql",
+    "query",
+    "postgresql",
+    "mysql",
+    "sqlite3",
+    "oracle",
+    "mssql",
+    "knex"
+  ],
   "bugs": {
     "url": "https://github.com/a179346/knex-tree/issues"
   },
