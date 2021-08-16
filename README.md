@@ -1,6 +1,8 @@
 <h1 align="center">knex-tree 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <a href="https://www.npmjs.com/package/knex-tree" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/npm/v/knex-tree?maxAge=3600)" />
+  </a>
   <a href="https://github.com/a179346/knex-tree#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -16,6 +18,7 @@
 
 ## 🔗 Link
 + [Github](https://github.com/a179346/knex-tree#readme)
++ [npm](https://www.npmjs.com/package/knex-tree)
 
 ## 📥 Install
 
