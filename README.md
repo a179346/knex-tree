@@ -80,7 +80,6 @@ const data = await node.getParentData();
 ```
 ##### `KnexNode.getChildrenData(where?)` => `Promise<Model[]>`
 ```js
-// data is null if no children
 const data = await node.getChildrenData();
 ```
 ##### `KnexNode.isRoot()` => `Promise<boolean>`
