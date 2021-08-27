@@ -65,12 +65,13 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
     return result || null;
   }
 
-  async getChildrenData (): Promise<Model[] | null> {
-    const where: any = {};
-    where[this.options.parentIdColumn] = this.id;
-    const result = await this.options.db(this.options.table).where(where);
-    if (result.length === 0)
-      return null;
+  async getChildrenData (where?: any): Promise<Model[]> {
+    const whereParentIsId: any = {};
+    whereParentIsId[this.options.parentIdColumn] = this.id;
+    const query = this.options.db(this.options.table).where(whereParentIsId);
+    if (where)
+      query.andWhere(where);
+    const result = await query;
     return result;
   }
 
@@ -78,7 +79,8 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
     const result = await this.getQuery()
       .select(this.options.parentIdColumn)
       .first();
-    return (result && (result[this.options.parentIdColumn] === null || result[this.options.parentIdColumn] === this.id)) || false;
+    if (!result) return false;
+    return (result[this.options.parentIdColumn] === null || result[this.options.parentIdColumn] === this.id);
   }
 
   async getPath (): Promise<(Model & ITreeLv)[] | null> {
@@ -107,9 +109,7 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
     where[this.options.idColumn] = id;
     where[this.options.parentIdColumn] = this.id;
     const result = await this.options.db(this.options.table).where(where).first();
-    if (!result)
-      return null;
-    return result;
+    return result || null;
   }
 
   async hasParent (id: IdType): Promise<Model | null> {
@@ -181,8 +181,8 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
     return result.reverse();
   }
 
-  async getDescendants (maxLevel?: number): Promise<(Model & ITreeLv)[] | null> {
-    const result = await this.options.db
+  async getDescendants (maxLevel?: number | null, where?: any): Promise<(Model & ITreeLv)[]> {
+    const query = this.options.db
       .withRecursive('pt', (qb) => {
         qb.select([ this.options.table + '.*', this.options.db.raw('0 as `TreeLv`') ])
           .from(this.options.table)
@@ -196,11 +196,11 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
               qb.andWhere('n.TreeLv', '<', maxLevel);
           });
       })
-      .select('*').from('pt');
+      .select('*').from('pt').where(this.options.idColumn, '!=', this.id as unknown as string);
+    if (where)
+      query.andWhere(where);
 
-    if (!result || result.length < 1)
-      return null;
-    result.shift();
+    const result = await query;
     return result;
   }
 }

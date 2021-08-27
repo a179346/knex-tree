@@ -78,7 +78,7 @@ const data = await node.getData();
 // data is null if parent dosen't exist in the table
 const data = await node.getParentData();
 ```
-##### `KnexNode.getChildrenData()` => `Promise<Model[] | null>`
+##### `KnexNode.getChildrenData(where?)` => `Promise<Model[]>`
 ```js
 // data is null if no children
 const data = await node.getChildrenData();
@@ -125,9 +125,8 @@ const data = await node.getPathUpTo(7);
 // return the path from this node to the descendant(id = 7)
 const data = await node.getPathDownTo(7);
 ```
-##### `KnexNode.getDescendants(maxLevel?)` => `Promise<(Model & ITreeLv)[] | null>`
+##### `KnexNode.getDescendants(maxLevel?, where?)` => `Promise<(Model & ITreeLv)[]>`
 ```js
-// data is null if this.id doesn't exist
 // return all descendants
 let data = await node.getDescendants();
 

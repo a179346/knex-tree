@@ -7,7 +7,7 @@ export interface INode<IdType, Model> {
   isExist(): Promise<boolean>;
   getData(): Promise<Model | null>;
   getParentData(): Promise<Model | null>;
-  getChildrenData(): Promise<Model[] | null>;
+  getChildrenData(where?: any): Promise<Model[]>;
 
   isRoot(): Promise<boolean>;
   getPath(): Promise<(Model & ITreeLv)[] | null>;
@@ -20,7 +20,7 @@ export interface INode<IdType, Model> {
   getPathUpTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
   getPathDownTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
 
-  getDescendants(maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
+  getDescendants(maxLevel?: number | null, where?: any): Promise<(Model & ITreeLv)[]>;
 }
 
 export interface ITree<IdType, Model> {
