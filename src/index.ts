@@ -1,4 +1,5 @@
 import Knex from 'knex';
+import { PassThrough } from 'stream';
 import { ITree, INode, ITreeLv } from './interface';
 
 interface KnexTreeOptions {
@@ -202,5 +203,27 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
 
     const result = await query;
     return result;
+  }
+
+  getDescendantsInStream (maxLevel?: number | null, where?: any): PassThrough {
+    const query = this.options.db
+      .withRecursive('pt', (qb) => {
+        qb.select([ this.options.table + '.*', this.options.db.raw('0 as `TreeLv`') ])
+          .from(this.options.table)
+          .where(this.options.table + '.' + this.options.idColumn, this.id as unknown as string)
+          .union((qb) => {
+            qb.select([ 'p.*', this.options.db.raw('`TreeLv` + 1') ])
+              .from(this.options.db.raw('`' + this.options.table + '` as `p`, `pt` as `n`'))
+              .whereRaw('p.' + this.options.parentIdColumn + ' = n.' + this.options.idColumn)
+              .andWhereRaw('p.' + this.options.idColumn + ' != n.' + this.options.idColumn);
+            if (maxLevel)
+              qb.andWhere('n.TreeLv', '<', maxLevel);
+          });
+      })
+      .select('*').from('pt').where(this.options.idColumn, '!=', this.id as unknown as string);
+    if (where)
+      query.andWhere(where);
+
+    return query.stream();
   }
 }

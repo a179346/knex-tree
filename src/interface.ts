@@ -1,3 +1,5 @@
+import { PassThrough } from 'stream';
+
 export interface ITreeLv {
   TreeLv: number;
 }
@@ -21,6 +23,7 @@ export interface INode<IdType, Model> {
   getPathDownTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
 
   getDescendants(maxLevel?: number | null, where?: any): Promise<(Model & ITreeLv)[]>;
+  getDescendantsInStream(maxLevel?: number | null, where?: any): PassThrough;
 }
 
 export interface ITree<IdType, Model> {
