@@ -22,7 +22,7 @@ export interface INode<IdType, Model> {
   getPathUpTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
   getPathDownTo(id: IdType, maxLevel?: number): Promise<(Model & ITreeLv)[] | null>;
 
-  getDescendants(maxLevel?: number | null, where?: any): Promise<(Model & ITreeLv)[]>;
+  getDescendants(maxLevel?: number | null, where?: any, limit?: number, offset?: number): Promise<(Model & ITreeLv)[]>;
   getDescendantsInStream(maxLevel?: number | null, where?: any): PassThrough;
 }
 

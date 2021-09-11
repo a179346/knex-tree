@@ -182,7 +182,7 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
     return result.reverse();
   }
 
-  async getDescendants (maxLevel?: number | null, where?: any): Promise<(Model & ITreeLv)[]> {
+  async getDescendants (maxLevel?: number | null, where?: any, limit?: number, offset?: number): Promise<(Model & ITreeLv)[]> {
     const query = this.options.db
       .withRecursive('pt', (qb) => {
         qb.select([ this.options.table + '.*', this.options.db.raw('0 as `TreeLv`') ])
@@ -200,6 +200,10 @@ export class KnexNode<IdType, Model> implements INode<IdType, Model> {
       .select('*').from('pt').where(this.options.idColumn, '!=', this.id as unknown as string);
     if (where)
       query.andWhere(where);
+    if (limit)
+      query.limit(limit);
+    if (offset)
+      query.offset(offset);
 
     const result = await query;
     return result;
